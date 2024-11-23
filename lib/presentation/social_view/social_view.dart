@@ -33,10 +33,10 @@ class SocialView extends StatelessWidget {
                 top: Radius.circular(20),
               ),
             ),
-            builder: (context) => CreatePostModal(),
+            builder: (context) => const CreatePostModal(),
           );
         },
-        child: const Icon(Icons.add, color: Colors.white),
+        child: const Icon(Icons.camera, color: Colors.white),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(

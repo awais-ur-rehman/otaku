@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import '../../../utils/global/app_globals.dart';
 import '../../../utils/storage/shared_prefs.dart';
 import '../../model/user_model.dart';
 
 class SignupRepository {
-  final String _baseUrl = 'http://192.168.100.169:8080/api/user';
+  final String _baseUrl = '$api/api/user';
 
   Future<bool> createUser({
     required String username,

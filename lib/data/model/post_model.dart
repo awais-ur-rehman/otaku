@@ -23,16 +23,17 @@ class Post extends Equatable {
 
   factory Post.fromJson(Map<String, dynamic> json) {
     return Post(
-      id: json['_id'] as String,
-      user: User.fromJson(json['user']),
-      content: json['content'] as String,
+      id: json['_id'] as String? ?? '',
+      user: User.fromJson(json['user'] as Map<String, dynamic>? ?? {}),
+      content: json['content'] as String? ?? '',
       image: json['image'] as String?,
       likes: List<String>.from(json['likes'] ?? []),
       dislikes: List<String>.from(json['dislikes'] ?? []),
-      comments: (json['comments'] as List<dynamic>)
-          .map((comment) => Comment.fromJson(comment))
-          .toList(),
-      createdAt: DateTime.parse(json['createdAt']),
+      comments: (json['comments'] as List<dynamic>?)
+          ?.map((comment) => Comment.fromJson(comment))
+          .toList() ??
+          [],
+      createdAt: DateTime.parse(json['createdAt'] as String),
     );
   }
 
@@ -81,7 +82,7 @@ class User extends Equatable {
   final String username;
   final String? avatar;
 
-  User({
+  const User({
     required this.id,
     required this.username,
     this.avatar,
@@ -89,8 +90,8 @@ class User extends Equatable {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      id: json['_id'] as String,
-      username: json['username'] as String,
+      id: json['_id'] as String? ?? '',
+      username: json['username'] as String? ?? 'Unknown User',
       avatar: json['avatar'] as String?,
     );
   }
@@ -109,31 +110,39 @@ class User extends Equatable {
 
 class Comment extends Equatable {
   final String userId;
+  final String username;
+  final String? avatar;
   final String content;
   final DateTime createdAt;
 
   Comment({
     required this.userId,
+    required this.username,
+    this.avatar,
     required this.content,
     required this.createdAt,
   });
 
   factory Comment.fromJson(Map<String, dynamic> json) {
     return Comment(
-      userId: json['userId'] as String,
-      content: json['content'] as String,
-      createdAt: DateTime.parse(json['createdAt']),
+      userId: json['userId'] as String? ?? '',
+      username: json['username'] as String? ?? 'Unknown User',
+      avatar: json['avatar'] as String?,
+      content: json['content'] as String? ?? '',
+      createdAt: DateTime.parse(json['createdAt'] as String),
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
       'userId': userId,
+      'username': username,
+      'avatar': avatar,
       'content': content,
       'createdAt': createdAt.toIso8601String(),
     };
   }
 
   @override
-  List<Object?> get props => [userId, content, createdAt];
+  List<Object?> get props => [userId, username, avatar, content, createdAt];
 }

@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import '../../../utils/global/app_globals.dart';
 import '../../../utils/storage/shared_prefs.dart';
 import '../../model/profile_model.dart';
 
 
 class ProfileRepository {
-  final String _baseUrl = 'http://192.168.100.169:8080/api/profile';
+  final String _baseUrl = '$api/api/profile';
 
   // Create or update profile
   Future<bool> createOrUpdateProfile(ProfileModel profile) async {

@@ -40,6 +40,7 @@ class SignupCubit extends Cubit<SignupStates> {
 
       if (isSuccess) {
         dispose();
+        emit(SignupLoading());
         return true;
       } else {
         dispose();

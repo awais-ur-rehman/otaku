@@ -115,9 +115,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
     else if (index == 1) {
     }
     else if (index == 2) {
-      sharedPrefs.clearProfile();
-      sharedPrefs.clearUserData();
-      context.go(RouteNames.splashRoute);
+
     }
     navigationShell.goBranch(
       index,

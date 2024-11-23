@@ -2,12 +2,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:otaku/data/model/post_model.dart';
 import 'package:otaku/utils/colors/color.dart';
 import '../../../logic/social_cubit/reaction_cubit.dart';
 import '../../../logic/social_cubit/reaction_state.dart';
 import '../../../logic/social_cubit/social_cubit.dart';
 import '../../../utils/storage/shared_prefs.dart';
+import 'cstm_comment_modal.dart';
 
 class PostTile extends StatelessWidget {
   final Post post;
@@ -77,63 +79,82 @@ class PostTile extends StatelessWidget {
                 ),
               ),
             // Likes and Dislikes
-            BlocBuilder<ReactionCubit, ReactionState>(
-              builder: (context, reactionState) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        final reactionCubit = context.read<ReactionCubit>();
-                        reactionCubit.toggleLike();
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                BlocBuilder<ReactionCubit, ReactionState>(
+                  builder: (context, reactionState) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            final reactionCubit = context.read<ReactionCubit>();
+                            reactionCubit.toggleLike();
 
-                        context.read<SocialCubit>().reactToPost(
-                          postId: post.id,
-                          userId: userId!,
-                          reactionType: reactionState.isLiked ? "remove_like" : "like",
-                        );
-                      },
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/svgs/like.svg',
-                            color: reactionState.isLiked
-                                ? AppColors.primaryPurple
-                                : AppColors.textPrimary,
-                            height: 24,
-                            width: 24,
+                            context.read<SocialCubit>().reactToPost(
+                              postId: post.id,
+                              userId: userId!,
+                              reactionType: reactionState.isLiked ? "remove_like" : "like",
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/svgs/like.svg',
+                                color: reactionState.isLiked
+                                    ? AppColors.primaryPurple
+                                    : AppColors.textPrimary,
+                                height: 24,
+                                width: 24,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(width: screenWidth * 0.04,),
-                    GestureDetector(
-                      onTap: () {
-                        final reactionCubit = context.read<ReactionCubit>();
-                        reactionCubit.toggleDislike();
+                        ),
+                        SizedBox(width: screenWidth * 0.04,),
+                        GestureDetector(
+                          onTap: () {
+                            final reactionCubit = context.read<ReactionCubit>();
+                            reactionCubit.toggleDislike();
 
-                        context.read<SocialCubit>().reactToPost(
-                          postId: post.id,
-                          userId: userId!,
-                          reactionType: reactionState.isDisliked ? "remove_dislike" : "dislike",
-                        );
-                      },
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            'assets/svgs/unlike.svg',
-                            color: reactionState.isDisliked
-                                ? AppColors.primaryPurple
-                                : AppColors.textPrimary,
-                            height: 24,
-                            width: 24,
+                            context.read<SocialCubit>().reactToPost(
+                              postId: post.id,
+                              userId: userId!,
+                              reactionType: reactionState.isDisliked ? "remove_dislike" : "dislike",
+                            );
+                          },
+                          child: Row(
+                            children: [
+                              SvgPicture.asset(
+                                'assets/svgs/unlike.svg',
+                                color: reactionState.isDisliked
+                                    ? AppColors.primaryPurple
+                                    : AppColors.textPrimary,
+                                height: 24,
+                                width: 24,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              },
+                        ),
+                      ],
+                    );
+                  },
+                ),
+                SvgPicture.asset(
+                  'assets/svgs/comment.svg',
+                  color: AppColors.primaryPurple,
+                  height: 32,
+                  width: 32,
+                ).onTap(() {
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: AppColors.backgroundDark,
+                    builder: (context) => CommentModal(postId: post.id, userId: userId!),
+                  );
+                }),
+
+              ],
             ),
           ],
         ),

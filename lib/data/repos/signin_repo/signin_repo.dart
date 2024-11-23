@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import '../../../utils/global/app_globals.dart';
 import '../../../utils/storage/shared_prefs.dart';
 import '../../model/profile_model.dart';
 import '../../model/user_model.dart';
 
 class SigninRepository {
-  final String _baseUrl = 'http://192.168.100.169:8080/api/user';
+  final String _baseUrl = '$api/api/user';
 
   Future<bool> loginUser({
     required String email,
@@ -28,7 +28,7 @@ class SigninRepository {
       print(response.statusCode);
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
-
+        print(jsonResponse);
         // Parse user data
         final userData = jsonResponse['user'];
         final user = UserModel(

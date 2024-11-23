@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:otaku/utils/storage/shared_prefs.dart';
+import 'package:otaku/utils/global/app_globals.dart';
 import '../../model/post_model.dart';
 
 class PostRepository {
-  final String _baseUrl = 'http://192.168.100.169:8080/api/posts';
+  final String _baseUrl = "$api/api/posts";
 
   // Fetch all posts
   Future<List<Post>> getAllPosts() async {
@@ -42,9 +42,6 @@ class PostRepository {
         headers: {'Content-Type': 'application/json'},
         body: json.encode(body),
       );
-
-      print('Response status code: ${response.statusCode}');
-      print('Response body: ${response.body}');
 
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);

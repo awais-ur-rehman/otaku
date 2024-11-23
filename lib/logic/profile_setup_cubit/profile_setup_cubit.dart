@@ -88,7 +88,7 @@ class ProfileSetupCubit extends Cubit<ProfileSetupStates> {
           instagram: instagramController.text,
           website: websiteController.text,
         ),
-        avatar: avatarBase64,
+        avatar: avatarBase64!,
       );
 
       // Send data to the repository

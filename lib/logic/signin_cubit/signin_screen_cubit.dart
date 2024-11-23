@@ -29,7 +29,7 @@ class SigninCubit extends Cubit<SigninStates> {
       );
       if (isSuccess) {
         disposeControllers();
-        emit(SigninLoaded());
+        emit(SigninLoading());
         return true;
       } else {
         disposeControllers();

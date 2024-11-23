@@ -4,7 +4,7 @@ class ProfileModel {
   final List<String>? favoriteGenres;
   final List<WatchHistory>? watchHistory;
   final SocialLinks? socialLinks;
-  final String? avatar;
+  final String avatar;
 
   ProfileModel({
     required this.userId,
@@ -12,7 +12,7 @@ class ProfileModel {
     this.favoriteGenres,
     this.watchHistory,
     this.socialLinks,
-    this.avatar,
+    this.avatar = "",
   });
 
   Map<String, dynamic> toMap() {
@@ -30,8 +30,8 @@ class ProfileModel {
 
   factory ProfileModel.fromMap(Map<String, dynamic> map) {
     return ProfileModel(
-      userId: map['userId'],
-      bio: map['bio'],
+      userId: map['userId'] ?? "",
+      bio: map['bio'] ?? "",
       favoriteGenres: List<String>.from(map['preferences']['favoriteGenres'] ?? []),
       watchHistory: map['preferences']['watchHistory'] != null
           ? List<WatchHistory>.from(map['preferences']['watchHistory']
@@ -39,10 +39,11 @@ class ProfileModel {
           : [],
       socialLinks: map['socialLinks'] != null
           ? SocialLinks.fromMap(map['socialLinks'])
-          : null,
-      avatar: map['avatar'],
+          : SocialLinks(),
+      avatar: map['avatar'] ?? "",
     );
   }
+
 }
 
 class WatchHistory {
