@@ -26,193 +26,233 @@ class AnimeDetailView extends StatelessWidget {
             color: AppColors.textPrimary,
           ),
         ),
+        title: Text(
+          anime.titleEnglish,
+          style: const TextStyle(
+            color: AppColors.textPrimary,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: SizedBox(
-            width: screenWidth,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Banner Image or Placeholder
-                ClipRRect(
-                  child: anime.coverImageLarge.isNotEmpty
-                      ? Image.network(
-                    anime.coverImageLarge,
-                    width: screenWidth,
-                    height: screenHeight * 0.3,
-                    fit: BoxFit.cover,
-                  )
-                      : Container(
-                    width: screenWidth,
-                    height: screenHeight * 0.3,
-                    color: AppColors.darkGray,
-                    child: const Center(
-                      child: Text(
-                        'No Banner Available',
-                        style: TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 18,
-                        ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                child: anime.coverImageLarge.isNotEmpty
+                    ? Image.network(
+                  anime.coverImageLarge,
+                  width: screenWidth,
+                  height: screenHeight * 0.3,
+                  fit: BoxFit.cover,
+                )
+                    : Container(
+                  width: screenWidth,
+                  height: screenHeight * 0.3,
+                  color: AppColors.darkGray,
+                  child: const Center(
+                    child: Text(
+                      'No Banner Available',
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: 18,
                       ),
                     ),
                   ),
                 ),
-                SizedBox(height: screenHeight * 0.02),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: screenHeight * 0.01,
-                    horizontal: screenWidth * 0.04,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Title
-                      Text(
-                        anime.titleEnglish,
-                        style: TextStyle(
-                          color: AppColors.textPrimary,
-                          fontSize: screenWidth * 0.05,
-                          fontWeight: FontWeight.w500,
+              ),
+              SizedBox(height: screenHeight * 0.02),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: screenWidth * 0.04,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      anime.titleEnglish != "" ? anime.titleRomaji : anime.titleNative,
+                      style: TextStyle(
+                        color: AppColors.textPrimary,
+                        fontSize: screenWidth * 0.05,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    Text(
+                      anime.genres.join(', '),
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: screenWidth * 0.035,
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    Wrap(
+                      spacing: 8.0,
+                      runSpacing: 8.0,
+                      children: [
+                        _infoChip('Episodes', anime.episodes.toString()),
+                        _infoChip('Duration', '${anime.duration} mins'),
+                        _infoChip('Popularity', anime.popularity.toString()),
+                      ],
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    Row(
+                      children: [
+                        const Text(
+                          'Average Score: ',
+                          style: TextStyle(
+                            color: AppColors.textSecondary,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: screenHeight * 0.02),
-        
-                      // Genres
-                      Text(
-                        anime.genres.join(', '),
-                        style: TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: screenWidth * 0.035,
+                        Text(
+                          '${anime.averageScore}%',
+                          style: const TextStyle(
+                            color: AppColors.accentPurple,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: screenHeight * 0.02),
-        
-                      // Episodes
-                      Row(
+                      ],
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    Row(
+                      children: [
+                        _infoChip('Season', '${anime.season} ${anime.seasonYear}'),
+                        _infoChip('Format', anime.format),
+                      ],
+                    ),
+                    SizedBox(height: screenHeight * 0.02),
+                    if (anime.studios.isNotEmpty)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
-                            'Episodes: ',
+                            'Studios:',
                             style: TextStyle(
                               color: AppColors.textSecondary,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          Text(
-                            anime.episodes.toString(),
-                            style: TextStyle(
-                              color: AppColors.textPrimary,
-                              fontSize: screenWidth * 0.035,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: screenHeight * 0.01),
-        
-                      // Season and Year
-                      Row(
-                        children: [
-                          const Text(
-                            'Season: ',
-                            style: TextStyle(
-                              color: AppColors.textSecondary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            '${anime.season} ${anime.seasonYear}',
-                            style: TextStyle(
-                              color: AppColors.textPrimary,
-                              fontSize: screenWidth * 0.035,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: screenHeight * 0.01),
-        
-                      // Format
-                      Row(
-                        children: [
-                          const Text(
-                            'Format: ',
-                            style: TextStyle(
-                              color: AppColors.textSecondary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            anime.format,
-                            style: TextStyle(
-                              color: AppColors.textPrimary,
-                              fontSize: screenWidth * 0.035,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: screenHeight * 0.01),
-        
-                      // Status
-                      Row(
-                        children: [
-                          const Text(
-                            'Status: ',
-                            style: TextStyle(
-                              color: AppColors.textSecondary,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text(
-                            anime.status,
-                            style: TextStyle(
-                              color: AppColors.textPrimary,
-                              fontSize: screenWidth * 0.035,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: screenHeight * 0.01),
-        
-                      // Studios
-                      if (anime.studios.isNotEmpty)
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Studios:',
-                              style: TextStyle(
-                                color: AppColors.textSecondary,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(height: screenHeight * 0.01),
-                            ...anime.studios.map(
-                                  (studio) => Text(
-                                studio,
-                                style: TextStyle(
-                                  color: AppColors.textPrimary,
-                                  fontSize: screenWidth * 0.035,
+                          SizedBox(height: screenHeight * 0.01),
+                          Wrap(
+                            spacing: 8.0,
+                            runSpacing: 4.0,
+                            children: anime.studios
+                                .map(
+                                  (studio) => Chip(
+                                backgroundColor: AppColors.darkGray,
+                                label: Text(
+                                  studio,
+                                  style: const TextStyle(
+                                    color: AppColors.textPrimary,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      SizedBox(height: screenHeight * 0.02),
-        
-                      // Description
-                      Text(
-                        anime.description,
-                        style: TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: screenWidth * 0.04,
-                        ),
+                            )
+                                .toList(),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    SizedBox(height: screenHeight * 0.02),
+                    const Text(
+                      'Description:',
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.01),
+                    Text(
+                      anime.description,
+                      style: TextStyle(
+                        color: AppColors.textSecondary,
+                        fontSize: screenWidth * 0.04,
+                      ),
+                    ),
+                    SizedBox(height: screenHeight * 0.03),
+                    if (anime.characters.isNotEmpty)
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Characters:',
+                            style: TextStyle(
+                              color: AppColors.textSecondary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: screenHeight * 0.01),
+                          SizedBox(
+                            height: screenHeight * 0.25,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: anime.characters.length,
+                              itemBuilder: (context, index) {
+                                final character = anime.characters[index];
+                                return _characterCard(
+                                    character, screenWidth, screenHeight);
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
+      ),
+    );
+  }
+
+  // Helper for Info Chips
+  Widget _infoChip(String label, String value) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      margin: const EdgeInsets.only(right: 8, bottom: 8),
+      decoration: BoxDecoration(
+        color: AppColors.darkGray,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Text(
+        '$label: $value',
+        style: const TextStyle(
+          color: AppColors.textPrimary,
+        ),
+      ),
+    );
+  }
+
+
+  // Helper for Character Card
+  Widget _characterCard(Character character, double screenWidth, double screenHeight) {
+    return Container(
+      margin: EdgeInsets.only(right: screenWidth * 0.02),
+      width: screenWidth * 0.3,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              character.imageUrl,
+              width: screenWidth * 0.28,
+              height: screenHeight * 0.12,
+              fit: BoxFit.cover,
+            ),
+          ),
+          SizedBox(height: screenHeight * 0.005),
+          Text(
+            character.name,
+            style: TextStyle(
+              color: AppColors.textPrimary,
+              fontSize: screenWidth * 0.035,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }

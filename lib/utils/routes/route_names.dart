@@ -1,6 +1,7 @@
 class RouteNames {
   static const String splashRoute = '/';
   static const String animeDetailRoute = '/animeDetail';
+  static const String streamDetailRoute = '/streamDetail';
   static const String welcomeAnimeRoute = '/welcomeAnime';
   static const String welcomeSocialRoute = '/welcomeSocial';
   static const String welcomeDiscussionRoute = '/welcomeDiscussion';
@@ -10,4 +11,5 @@ class RouteNames {
   static const String homeRoute = '/home';
   static const String socialRoute = '/social';
   static const String forumRoute = '/forum';
+  static const String videoPlayerPage = '/videoPlayer';
 }

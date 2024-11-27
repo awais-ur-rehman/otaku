@@ -20,5 +20,15 @@ class HomeLoaded extends HomeStates {
   List<Object> get props => [anime];
 }
 
+class HomeSearchResults extends HomeStates {
+  final List<Anime> searchResults;
+
+  const HomeSearchResults(this.searchResults);
+
+  @override
+  List<Object> get props => [searchResults];
+}
+
+
 class HomeError extends HomeStates {}
 

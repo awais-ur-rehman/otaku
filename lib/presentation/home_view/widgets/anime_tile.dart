@@ -27,16 +27,16 @@ class AnimeTile extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      margin: EdgeInsets.only(bottom: screenHeight * 0.02), // Gap between tiles
-      padding: EdgeInsets.all(screenWidth * 0.03), // Inner padding for content
+      margin: EdgeInsets.only(bottom: screenHeight * 0.02),
+      padding: EdgeInsets.all(screenWidth * 0.03),
       decoration: BoxDecoration(
-        color: AppColors.primaryPurple, // Background color
-        borderRadius: BorderRadius.circular(10), // Rounded corners
+        color: AppColors.primaryPurple,
+        borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1), // Shadow color
-            blurRadius: 5, // Shadow blur
-            offset: const Offset(0, 3), // Shadow position
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 5,
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -52,16 +52,15 @@ class AnimeTile extends StatelessWidget {
           children: [
             // Cover Image
             ClipRRect(
-              borderRadius: BorderRadius.circular(8), // Rounded image corners
+              borderRadius: BorderRadius.circular(8),
               child: Image.network(
                 coverImage,
-                height: screenHeight * 0.2, // Adjusted size
+                height: screenHeight * 0.2,
                 width: screenWidth * 0.2,
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(width: screenWidth * 0.03), // Spacing between image and text
-            // Anime Details
+            SizedBox(width: screenWidth * 0.03),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -71,16 +70,16 @@ class AnimeTile extends StatelessWidget {
                     title,
                     style: TextStyle(
                       color: AppColors.textPrimary,
-                      fontSize: screenWidth * 0.04, // Adjusted font size
+                      fontSize: screenWidth * 0.04,
                       fontWeight: FontWeight.bold,
                     ),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: screenHeight * 0.01), // Spacing between title and genres
+                  SizedBox(height: screenHeight * 0.01),
                   // Genres
                   Text(
-                    genres.join(', '), // Display genres as comma-separated
+                    genres.join(', '),
                     style: TextStyle(
                       color: AppColors.textSecondary,
                       fontSize: screenWidth * 0.035,
@@ -88,7 +87,7 @@ class AnimeTile extends StatelessWidget {
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: screenHeight * 0.01), // Spacing between genres and description
+                  SizedBox(height: screenHeight * 0.01),
                   // Description
                   Text(
                     description,
@@ -96,7 +95,7 @@ class AnimeTile extends StatelessWidget {
                       color: AppColors.textSecondary,
                       fontSize: screenWidth * 0.03,
                     ),
-                    maxLines: 3, // Limit description lines
+                    maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],

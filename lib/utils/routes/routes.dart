@@ -8,7 +8,10 @@ import 'package:otaku/presentation/home_view/home_view.dart';
 import 'package:otaku/presentation/profile_setup_view/profile_setup_view.dart';
 import 'package:otaku/presentation/social_view/social_view.dart';
 import '../../data/model/anime_model.dart';
+import '../../data/model/stream_anime_model.dart';
 import '../../presentation/auth_view/login_view.dart';
+import '../../presentation/home_view/stream_detail_screen.dart';
+import '../../presentation/home_view/video_player_screen.dart';
 import '../../presentation/splash_view/splash_view.dart';
 import '../../presentation/widgets/cstm_bottom_nav_bar.dart';
 import 'route_names.dart';
@@ -75,6 +78,21 @@ final router = GoRouter(
         return AnimeDetailView(anime: anime);
       },
     ),
+    GoRoute(
+      path: RouteNames.streamDetailRoute,
+      builder: (context, state) {
+        final streamAnime = state.extra as StreamAnimeModel;
+        return StreamDetailScreen(streamAnime: streamAnime);
+      },
+    ),
+    GoRoute(
+      path: RouteNames.videoPlayerPage,
+      builder: (context, state) {
+        final String videoUrl = state.extra as String;
+        return VideoPlayerScreen(videoUrl: videoUrl);
+      },
+    ),
+
   ],
     initialLocation: RouteNames.splashRoute,
 );

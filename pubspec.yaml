@@ -39,9 +39,15 @@ dependencies:
   go_router: ^14.6.0
   nb_utils: ^7.0.7
 
-  #image_assets:
+  #launch_url:
+  url_launcher: ^6.3.1
+
+  #image and videos:
   image_picker: ^1.1.2
   flutter_svg: ^2.0.15
+  video_player: ^2.9.2
+  chewie: ^1.8.5
+  webview_flutter: ^4.10.0
 
   #storage_space:
   shared_preferences: ^2.3.3

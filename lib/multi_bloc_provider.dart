@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:otaku/logic/home_cubit/home_cubit.dart';
+import 'package:otaku/logic/home_cubit/video_player_cubit.dart';
 import 'package:otaku/logic/profile_setup_cubit/profile_setup_cubit.dart';
 import 'package:otaku/logic/signin_cubit/signin_screen_cubit.dart';
 import 'package:otaku/logic/social_cubit/social_cubit.dart';
@@ -38,6 +39,9 @@ class MultiBlocProviders {
     ),
     BlocProvider<SocialCubit>(
       create: (context) => SocialCubit(),
+    ),
+    BlocProvider<VideoPlayerCubit>(
+      create: (context) => VideoPlayerCubit(),
     ),
   ];
 }

@@ -36,7 +36,7 @@ class SocialView extends StatelessWidget {
             builder: (context) => const CreatePostModal(),
           );
         },
-        child: const Icon(Icons.camera, color: Colors.white),
+        child: const Icon(Icons.camera_alt_outlined, color: Colors.white),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(
