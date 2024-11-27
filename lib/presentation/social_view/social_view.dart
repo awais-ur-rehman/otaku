@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:otaku/logic/social_cubit/social_cubit.dart';
 import 'package:otaku/logic/social_cubit/social_states.dart';
 import 'package:otaku/presentation/social_view/widgets/cstm_post_list.dart';
@@ -22,21 +23,28 @@ class SocialView extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.black,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primaryPurple,
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            isScrollControlled: true,
-            backgroundColor: AppColors.backgroundDark,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(20),
+          backgroundColor: AppColors.primaryPurple,
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              backgroundColor: AppColors.backgroundDark,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(20),
+                ),
               ),
+              builder: (context) => const CreatePostModal(),
+            );
+          },
+          child: Center(
+            child: SvgPicture.asset(
+              'assets/svgs/make-post.svg',
+              height: screenWidth * 0.05,
+              width: screenWidth * 0.05,
+              color: AppColors.lightPurple,
             ),
-            builder: (context) => const CreatePostModal(),
-          );
-        },
-        child: const Icon(Icons.camera_alt_outlined, color: Colors.white),
+          ),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(

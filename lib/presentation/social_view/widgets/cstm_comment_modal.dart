@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../../../logic/social_cubit/comment_cubit.dart';
 import '../../../logic/social_cubit/comment_states.dart';
@@ -91,41 +92,57 @@ class CommentModal extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 16),
-                    TextField(
-                      controller: commentController,
-                      style: const TextStyle(color: AppColors.textPrimary),
-                      decoration: const InputDecoration(
-                        hintText: "Write a comment...",
-                        hintStyle: TextStyle(color: AppColors.textSecondary),
-                        border: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.accentPurple),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () {
-                        if (commentController.text.trim().isNotEmpty) {
-                          commentCubit.addComment(
-                            postId: postId,
-                            userId: userId,
-                            content: commentController.text.trim(),
-                          );
-                          commentController.clear();
-                        } else {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text("Comment cannot be empty!"),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: TextField(
+                            controller: commentController,
+                            style: const TextStyle(color: AppColors.textPrimary),
+                            decoration: const InputDecoration(
+                              hintText: "Write a comment...",
+                              hintStyle: TextStyle(color: AppColors.textSecondary),
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(color: AppColors.accentPurple),
+                              ),
                             ),
-                          );
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primaryPurple,
-                      ),
-                      child: const Text("Post Comment"),
+                          ),
+                        ),
+                        SizedBox(width: screenWidth * 0.02),
+                        InkWell(
+                          onTap: () {
+                            if (commentController.text.trim().isNotEmpty) {
+                              commentCubit.addComment(
+                                postId: postId,
+                                userId: userId,
+                                content: commentController.text.trim(),
+                              );
+                              commentController.clear();
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text("Comment cannot be empty!"),
+                                ),
+                              );
+                            }
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(screenWidth * 0.01),
+                            height: screenHeight * 0.06,
+                            child: Center(
+                              child: SvgPicture.asset(
+                                'assets/svgs/paper-plane.svg',
+                                height: screenWidth * 0.05,
+                                width: screenWidth * 0.05,
+                                color: AppColors.lightPurple,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
+                    SizedBox(height: screenHeight * 0.02),
                   ],
                 ),
               );
