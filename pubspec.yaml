@@ -46,7 +46,6 @@ dependencies:
   image_picker: ^1.1.2
   flutter_svg: ^2.0.15
   video_player: ^2.9.2
-  chewie: ^1.8.5
   webview_flutter: ^4.10.0
 
   #storage_space:
@@ -55,6 +54,7 @@ dependencies:
   #state_manager
   flutter_bloc: ^8.1.6
   equatable: ^2.0.5
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -8,7 +8,6 @@ import '../../model/profile_model.dart';
 class ProfileRepository {
   final String _baseUrl = '$api/api/profile';
 
-  // Create or update profile
   Future<bool> createOrUpdateProfile(ProfileModel profile) async {
     try {
       final response = await http.post(
@@ -26,11 +25,9 @@ class ProfileRepository {
         await sharedPrefs.setIsLoggedIn(true);
         return true;
       } else {
-        print('Profile update failed: ${response.body}');
         return false;
       }
     } catch (e) {
-      print('Error during profile update: $e');
       return false;
     }
   }

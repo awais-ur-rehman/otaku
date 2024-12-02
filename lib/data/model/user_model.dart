@@ -9,7 +9,6 @@ class UserModel {
     required this.email,
   });
 
-  // Convert UserModel to a Map for saving to SharedPreferences
   Map<String, String> toMap() {
     return {
       'id': id,
@@ -18,7 +17,6 @@ class UserModel {
     };
   }
 
-  // Create a UserModel instance from a Map
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       id: map['id'] ?? '',

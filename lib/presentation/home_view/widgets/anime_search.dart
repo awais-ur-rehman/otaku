@@ -34,7 +34,6 @@ class AnimeSearchBar extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.03),
       child: Row(
         children: [
-          // Anime SVG Icon
           SvgPicture.asset(
             'assets/svgs/unlike.svg',
             height: screenHeight * 0.03,
@@ -61,7 +60,6 @@ class AnimeSearchBar extends StatelessWidget {
               ),
             ),
           ),
-          // Search Icon Button
           IconButton(
             onPressed: () {
               onSearch(controller.text.trim());

@@ -16,7 +16,7 @@ class SharedPrefs {
   Future<void> setIsLoggedIn(bool status) async {
     await _prefs.setBool('isLoggedIn', status);
   }
-  // Save user data as a Map
+
   Future<void> saveUser(UserModel user) async {
     await _prefs.setString('userId', user.id);
     await _prefs.setString('username', user.username);
@@ -26,7 +26,6 @@ class SharedPrefs {
 
   String? get userId => _prefs.getString('userId');
 
-  // Retrieve user data and return a UserModel
   UserModel? getUser() {
     final id = _prefs.getString('userId');
     final username = _prefs.getString('username');
@@ -38,8 +37,6 @@ class SharedPrefs {
     return null;
   }
 
-
-  // Clear user data
   Future<void> clearUserData() async {
     await _prefs.remove('userId');
     await _prefs.remove('username');
@@ -47,12 +44,10 @@ class SharedPrefs {
     await setIsLoggedIn(false);
   }
 
-  // Save profile
   Future<void> saveProfile(ProfileModel profile) async {
     await _prefs.setString('profile', json.encode(profile.toMap()));
   }
 
-  // Get profile
   ProfileModel? getProfile() {
     final profileData = _prefs.getString('profile');
     if (profileData != null) {
@@ -61,11 +56,9 @@ class SharedPrefs {
     return null;
   }
 
-  // Clear profile
   Future<void> clearProfile() async {
     await _prefs.remove('profile');
   }
 }
 
-// Create a global instance
 final sharedPrefs = SharedPrefs();

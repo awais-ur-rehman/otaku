@@ -21,7 +21,6 @@ class Forum extends Equatable {
     required this.createdAt,
   });
 
-  // Factory method to create a Forum from JSON
   factory Forum.fromJson(Map<String, dynamic> json) {
     return Forum(
       id: json['_id'] as String,
@@ -37,7 +36,6 @@ class Forum extends Equatable {
     );
   }
 
-  // Convert a Forum to JSON
   Map<String, dynamic> toJson() {
     return {
       '_id': id,
@@ -56,7 +54,6 @@ class Forum extends Equatable {
       [id, name, description, topic, admin, members, threads, createdAt];
 }
 
-// Thread model for forums
 class Thread extends Equatable {
   final String userId;
   final String content;
@@ -72,7 +69,6 @@ class Thread extends Equatable {
     required this.createdAt,
   });
 
-  // Factory method to create a Thread from JSON
   factory Thread.fromJson(Map<String, dynamic> json) {
     return Thread(
       userId: json['userId'] as String,
@@ -83,7 +79,6 @@ class Thread extends Equatable {
     );
   }
 
-  // Convert a Thread to JSON
   Map<String, dynamic> toJson() {
     return {
       'userId': userId,

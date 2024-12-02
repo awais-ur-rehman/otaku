@@ -6,7 +6,6 @@ import '../../model/post_model.dart';
 class PostRepository {
   final String _baseUrl = "$api/api/posts";
 
-  // Fetch all posts
   Future<List<Post>> getAllPosts() async {
     try {
       final response = await http.get(Uri.parse(_baseUrl));
@@ -18,13 +17,11 @@ class PostRepository {
         throw Exception('Failed to load posts');
       }
     } catch (e) {
-      print('Error fetching posts: $e');
       rethrow;
     }
   }
 
 
-// Create a new post
   Future<bool> createPost({
     required String userId,
     required String content,
@@ -61,8 +58,6 @@ class PostRepository {
   }
 
 
-
-  // React to a post
   Future<bool> reactToPost({
     required String postId,
     required String userId,
@@ -77,12 +72,10 @@ class PostRepository {
 
       return response.statusCode == 200;
     } catch (e) {
-      print('Error reacting to post: $e');
       return false;
     }
   }
 
-  // Add a comment to a post
   Future<bool> addComment({
     required String postId,
     required String userId,
@@ -97,7 +90,6 @@ class PostRepository {
 
       return response.statusCode == 200;
     } catch (e) {
-      print('Error adding comment: $e');
       return false;
     }
   }

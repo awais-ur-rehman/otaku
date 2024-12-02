@@ -28,8 +28,6 @@ class SigninRepository {
       print(response.statusCode);
       if (response.statusCode == 200) {
         final jsonResponse = json.decode(response.body);
-        print(jsonResponse);
-        // Parse user data
         final userData = jsonResponse['user'];
         final user = UserModel(
           id: userData['id'],
@@ -54,11 +52,9 @@ class SigninRepository {
 
         return true;
       } else {
-        print('Signup failed: ${response.body}');
         return false;
       }
     } catch (e) {
-      print('Error during signup: $e');
       return false;
     }
   }

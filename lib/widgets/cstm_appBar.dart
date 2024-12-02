@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:otaku/logic/splash_cubit/splash_cubit.dart';
 import 'package:otaku/utils/colors/color.dart';
 
 class CustomAppbar extends StatelessWidget {

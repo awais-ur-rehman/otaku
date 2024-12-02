@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-
 class CustomFlatButton extends StatelessWidget {
   final VoidCallback onTap;
   final String text;
   final Color btnColor;
 
   const CustomFlatButton({
-    Key? key,
+    super.key,
     required this.onTap,
     required this.text,
     required this.btnColor,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

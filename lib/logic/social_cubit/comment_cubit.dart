@@ -11,7 +11,6 @@ class CommentCubit extends Cubit<CommentState> {
 
   CommentCubit({required this.socialCubit}) : super(const CommentState());
 
-  // Load comments for a specific post from the SocialCubit state
   void loadComments(String postId) {
     emit(state.copyWith(isLoading: true));
     try {
@@ -27,7 +26,6 @@ class CommentCubit extends Cubit<CommentState> {
     }
   }
 
-  // Add a new comment and update the SocialCubit state
   Future<void> addComment({
     required String postId,
     required String userId,

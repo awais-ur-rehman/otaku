@@ -115,7 +115,7 @@ class Comment extends Equatable {
   final String content;
   final DateTime createdAt;
 
-  Comment({
+  const Comment({
     required this.userId,
     required this.username,
     this.avatar,

@@ -43,25 +43,25 @@ class AnimeDetailView extends StatelessWidget {
               ClipRRect(
                 child: anime.coverImageLarge.isNotEmpty
                     ? Image.network(
-                  anime.coverImageLarge,
-                  width: screenWidth,
-                  height: screenHeight * 0.3,
-                  fit: BoxFit.cover,
-                )
+                        anime.coverImageLarge,
+                        width: screenWidth,
+                        height: screenHeight * 0.3,
+                        fit: BoxFit.cover,
+                      )
                     : Container(
-                  width: screenWidth,
-                  height: screenHeight * 0.3,
-                  color: AppColors.darkGray,
-                  child: const Center(
-                    child: Text(
-                      'No Banner Available',
-                      style: TextStyle(
-                        color: AppColors.textSecondary,
-                        fontSize: 18,
+                        width: screenWidth,
+                        height: screenHeight * 0.3,
+                        color: AppColors.darkGray,
+                        child: const Center(
+                          child: Text(
+                            'No Banner Available',
+                            style: TextStyle(
+                              color: AppColors.textSecondary,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
               ),
               SizedBox(height: screenHeight * 0.02),
               Padding(
@@ -72,7 +72,9 @@ class AnimeDetailView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      anime.titleEnglish != "" ? anime.titleRomaji : anime.titleNative,
+                      anime.titleEnglish != ""
+                          ? anime.titleRomaji
+                          : anime.titleNative,
                       style: TextStyle(
                         color: AppColors.textPrimary,
                         fontSize: screenWidth * 0.05,
@@ -118,7 +120,8 @@ class AnimeDetailView extends StatelessWidget {
                     SizedBox(height: screenHeight * 0.02),
                     Row(
                       children: [
-                        _infoChip('Season', '${anime.season} ${anime.seasonYear}'),
+                        _infoChip(
+                            'Season', '${anime.season} ${anime.seasonYear}'),
                         _infoChip('Format', anime.format),
                       ],
                     ),
@@ -141,15 +144,15 @@ class AnimeDetailView extends StatelessWidget {
                             children: anime.studios
                                 .map(
                                   (studio) => Chip(
-                                backgroundColor: AppColors.darkGray,
-                                label: Text(
-                                  studio,
-                                  style: const TextStyle(
-                                    color: AppColors.textPrimary,
+                                    backgroundColor: AppColors.darkGray,
+                                    label: Text(
+                                      studio,
+                                      style: const TextStyle(
+                                        color: AppColors.textPrimary,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                            )
+                                )
                                 .toList(),
                           ),
                         ],
@@ -207,7 +210,6 @@ class AnimeDetailView extends StatelessWidget {
     );
   }
 
-  // Helper for Info Chips
   Widget _infoChip(String label, String value) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -225,9 +227,8 @@ class AnimeDetailView extends StatelessWidget {
     );
   }
 
-
-  // Helper for Character Card
-  Widget _characterCard(Character character, double screenWidth, double screenHeight) {
+  Widget _characterCard(
+      Character character, double screenWidth, double screenHeight) {
     return Container(
       margin: EdgeInsets.only(right: screenWidth * 0.02),
       width: screenWidth * 0.3,

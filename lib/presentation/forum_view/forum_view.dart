@@ -6,23 +6,26 @@ class ForumView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: AppColors.black,
-      body: SafeArea(child: SizedBox(
+      body: SizedBox(
         height: screenHeight,
         width: screenWidth,
-        child:  Center(
-          child: Text("Feature Under Development!",
+        child: Center(
+          child: Text(
+            'Login',
             style: TextStyle(
-            color: AppColors.textPrimary,
-            fontSize: screenWidth * 0.05,
-            fontWeight: FontWeight.w400,
-          ),
+              fontFamily: 'MontserratMedium',
+              fontSize: screenWidth * 0.09,
+              color: AppColors.textPrimary,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.0,
+            ),
           ),
         ),
-      )),
+      ),
     );
   }
 }

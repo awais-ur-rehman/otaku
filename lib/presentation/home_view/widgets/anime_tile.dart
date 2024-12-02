@@ -41,16 +41,15 @@ class AnimeTile extends StatelessWidget {
         ],
       ),
       child: InkWell(
-        onTap: (){
-            context.go(
-                RouteNames.animeDetailRoute,
-              extra: anime,
-            );
+        onTap: () {
+          context.go(
+            RouteNames.animeDetailRoute,
+            extra: anime,
+          );
         },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Cover Image
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.network(
@@ -65,7 +64,6 @@ class AnimeTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Title
                   Text(
                     title,
                     style: TextStyle(
@@ -77,7 +75,6 @@ class AnimeTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: screenHeight * 0.01),
-                  // Genres
                   Text(
                     genres.join(', '),
                     style: TextStyle(
@@ -88,7 +85,6 @@ class AnimeTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: screenHeight * 0.01),
-                  // Description
                   Text(
                     description,
                     style: TextStyle(

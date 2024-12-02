@@ -12,13 +12,11 @@ class ProfileSetupCubit extends Cubit<ProfileSetupStates> {
 
   final ProfileRepository profileRepo = ProfileRepository();
 
-  // Controllers for user inputs
   final bioController = TextEditingController();
   final twitterController = TextEditingController();
   final instagramController = TextEditingController();
   final websiteController = TextEditingController();
 
-  // State variables
   String? avatarBase64;
   final List<String> predefinedGenres = [
     "Action",
@@ -34,12 +32,10 @@ class ProfileSetupCubit extends Cubit<ProfileSetupStates> {
   ];
   final List<String> selectedGenres = [];
 
-  // Load profile setup screen
   void loadProfileSetupScreen() {
     emit(ProfileSetupLoaded());
   }
 
-  // Handle avatar upload
   Future<void> pickAvatar() async {
     final picker = ImagePicker();
     final pickedImage = await picker.pickImage(source: ImageSource.gallery);
@@ -50,7 +46,6 @@ class ProfileSetupCubit extends Cubit<ProfileSetupStates> {
     }
   }
 
-  // Toggle genre selection
   void toggleGenre(String genre) {
     emit(ProfileSetupLoading());
     if (selectedGenres.contains(genre)) {
@@ -61,7 +56,6 @@ class ProfileSetupCubit extends Cubit<ProfileSetupStates> {
     emit(ProfileSetupLoaded());
   }
 
-  // Dispose controllers
   void disposeControllers() {
     bioController.dispose();
     twitterController.dispose();
@@ -69,7 +63,6 @@ class ProfileSetupCubit extends Cubit<ProfileSetupStates> {
     websiteController.dispose();
   }
 
-  // Submit profile setup
   Future<bool> setupProfile() async {
     emit(ProfileSetupLoading());
     try {
@@ -77,8 +70,6 @@ class ProfileSetupCubit extends Cubit<ProfileSetupStates> {
       if (userId == null) {
         throw Exception("User ID not found in Shared Preferences");
       }
-
-      // Create a ProfileModel instance
       final profile = ProfileModel(
         userId: userId,
         bio: bioController.text,
@@ -91,9 +82,7 @@ class ProfileSetupCubit extends Cubit<ProfileSetupStates> {
         avatar: avatarBase64!,
       );
 
-      // Send data to the repository
       final success = await profileRepo.createOrUpdateProfile(profile);
-
       if (success) {
         emit(ProfileSetupLoaded());
         return true;

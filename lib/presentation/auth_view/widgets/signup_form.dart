@@ -4,12 +4,10 @@ import '../../../logic/signup_cubit/signup_pass_cubit.dart';
 import '../../../logic/signup_cubit/signup_screen_cubit.dart';
 import '../../../utils/colors/color.dart';
 
-
-
 class SignUpForm extends StatelessWidget {
   const SignUpForm({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -158,8 +156,8 @@ class SignUpForm extends StatelessWidget {
                     bool hasUpperCase = value.contains(RegExp(r'[A-Z]'));
                     bool hasLowerCase = value.contains(RegExp(r'[a-z]'));
                     bool hasDigits = value.contains(RegExp(r'\d'));
-                    bool hasSpecialCharacters = value.contains(RegExp(
-                        r'[!@#\$&*~%^()_+=|<>?{}\[\]\/\\.,-]'));
+                    bool hasSpecialCharacters = value.contains(
+                        RegExp(r'[!@#\$&*~%^()_+=|<>?{}\[\]\/\\.,-]'));
 
                     if (!hasUpperCase) {
                       return 'Password must include at least one uppercase letter';
@@ -221,7 +219,7 @@ class SignUpForm extends StatelessWidget {
                     letterSpacing: 1.0,
                   ),
                   obscureText:
-                  !(state is PasswordToggle && state.confirmPassVisible),
+                      !(state is PasswordToggle && state.confirmPassVisible),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please confirm your password';

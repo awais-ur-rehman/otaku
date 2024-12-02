@@ -52,7 +52,6 @@ class StreamAnimeWidget extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Cover Image
                 ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image.network(

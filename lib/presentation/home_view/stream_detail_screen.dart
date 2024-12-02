@@ -48,11 +48,9 @@ class StreamDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Anime Cover and Details
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Cover Image
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
@@ -75,7 +73,6 @@ class StreamDetailScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: screenWidth * 0.03),
-                // Anime Details
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,7 +143,6 @@ class StreamDetailScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Episode Details
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

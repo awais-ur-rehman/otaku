@@ -43,7 +43,6 @@ class Anime {
     required this.characters,
   });
 
-  // Factory constructor for creating an Anime object from JSON
   factory Anime.fromJson(Map<String, dynamic> json) {
     return Anime(
       id: json['id'] as int,

@@ -38,11 +38,9 @@ class SignupRepository {
         await sharedPrefs.saveUser(user);
         return true;
       } else {
-        print('Signup failed: ${response.body}');
         return false;
       }
     } catch (e) {
-      print('Error during signup: $e');
       return false;
     }
   }

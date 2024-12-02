@@ -5,7 +5,6 @@ import '../../model/forum_model.dart';
 class ForumRepository {
   final String _baseUrl = 'http://your-api-url/api/forums';
 
-  // Fetch all forums
   Future<List<Forum>> getAllForums() async {
     try {
       final response = await http.get(Uri.parse(_baseUrl));
@@ -22,7 +21,6 @@ class ForumRepository {
     }
   }
 
-  // Create a new forum
   Future<Forum> createForum({
     required String name,
     required String description,
@@ -55,7 +53,6 @@ class ForumRepository {
     }
   }
 
-  // Join a forum
   Future<bool> joinForum(String forumId, String userId) async {
     try {
       final response = await http.post(
@@ -71,7 +68,6 @@ class ForumRepository {
     }
   }
 
-  // Create a thread in a forum
   Future<bool> createThread({
     required String forumId,
     required String userId,
@@ -91,7 +87,6 @@ class ForumRepository {
     }
   }
 
-  // React to a thread
   Future<bool> reactToThread({
     required String forumId,
     required String threadId,

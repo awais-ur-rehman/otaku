@@ -7,7 +7,7 @@ class UpcomingAnimeModel extends Equatable {
   final String title;
   final String? coverImage;
 
-  UpcomingAnimeModel({
+  const UpcomingAnimeModel({
     required this.id,
     required this.episode,
     required this.airingAt,

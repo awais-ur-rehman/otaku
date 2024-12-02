@@ -8,7 +8,6 @@ class SocialCubit extends Cubit<SocialStates> {
 
   final PostRepository postRepository = PostRepository();
 
-  // Method to fetch all posts
   Future<void> fetchPosts() async {
     emit(SocialLoading());
     try {
@@ -23,15 +22,12 @@ class SocialCubit extends Cubit<SocialStates> {
     }
   }
 
-  // Method to refresh posts
   Future<void> refreshPosts() async {
     try {
-      print("fetching everything again");
       final posts = await postRepository.getAllPosts();
       if (posts.isEmpty) {
         emit(const SocialEmpty("No posts available."));
       } else {
-        print("finally laoded");
         emit(SocialPostsLoaded(posts));
       }
     } catch (e) {
@@ -39,7 +35,6 @@ class SocialCubit extends Cubit<SocialStates> {
     }
   }
 
-// Method to create a new post
   Future<void> createPost({
     required String userId,
     required String content,
@@ -99,14 +94,13 @@ class SocialCubit extends Cubit<SocialStates> {
           }).toList();
         }
       } else {
-        emit(SocialError("Failed to react to post"));
+        emit(const SocialError("Failed to react to post"));
       }
     } catch (e) {
       emit(SocialError("Failed to react to post: $e"));
     }
   }
 
-  // Method to add a comment to a post
   Future<void> addComment({
     required String postId,
     required String userId,
@@ -124,11 +118,10 @@ class SocialCubit extends Cubit<SocialStates> {
       );
       if (isSuccess) {
         emit(SocialCommentAdded(postId));
-        // Refresh comments
         final posts = await postRepository.getAllPosts();
         emit(SocialPostsLoaded(posts));
       } else {
-        emit(SocialError("Failed to add comment"));
+        emit(const SocialError("Failed to add comment"));
       }
     } catch (e) {
       emit(SocialError("Failed to add comment: $e"));

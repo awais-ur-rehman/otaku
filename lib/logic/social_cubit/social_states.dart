@@ -8,15 +8,12 @@ abstract class SocialStates extends Equatable {
   List<Object?> get props => [];
 }
 
-// Initial State
 class SocialInitial extends SocialStates {}
 
-// Loading States
 class SocialLoading extends SocialStates {}
 
 class SocialRefreshing extends SocialStates {}
 
-// Loaded States
 class SocialPostsLoaded extends SocialStates {
   final List<Post> posts;
 
@@ -26,7 +23,6 @@ class SocialPostsLoaded extends SocialStates {
   List<Object?> get props => [posts];
 }
 
-// Single Post Loaded (for detailed view or editing)
 class SocialSinglePostLoaded extends SocialStates {
   final Post post;
 
@@ -36,7 +32,6 @@ class SocialSinglePostLoaded extends SocialStates {
   List<Object?> get props => [post];
 }
 
-// Post Created
 class SocialPostCreated extends SocialStates {
   final Post post;
 
@@ -46,7 +41,6 @@ class SocialPostCreated extends SocialStates {
   List<Object?> get props => [post];
 }
 
-// Post Updated
 class SocialPostUpdated extends SocialStates {
   final Post updatedPost;
 
@@ -56,7 +50,6 @@ class SocialPostUpdated extends SocialStates {
   List<Object?> get props => [updatedPost];
 }
 
-// Post Deleted
 class SocialPostDeleted extends SocialStates {
   final String postId;
 
@@ -66,7 +59,6 @@ class SocialPostDeleted extends SocialStates {
   List<Object?> get props => [postId];
 }
 
-// Like/Dislike State
 class SocialReactionUpdated extends SocialStates {
   final String postId;
   final int likes;
@@ -78,7 +70,6 @@ class SocialReactionUpdated extends SocialStates {
   List<Object?> get props => [postId, likes, dislikes];
 }
 
-// Comment Added
 class SocialCommentAdded extends SocialStates {
   final String postId;
 
@@ -88,7 +79,6 @@ class SocialCommentAdded extends SocialStates {
   List<Object?> get props => [postId];
 }
 
-// Error States
 class SocialError extends SocialStates {
   final String message;
 
@@ -98,7 +88,6 @@ class SocialError extends SocialStates {
   List<Object?> get props => [message];
 }
 
-// Empty State
 class SocialEmpty extends SocialStates {
   final String message;
 

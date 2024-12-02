@@ -5,7 +5,6 @@ import '../../model/stream_anime_model.dart';
 class StreamAnimeRepo {
   final String baseUrl = 'https://otaku-streaming-server.onrender.com';
 
-  // Fetch popular anime
   Future<List<StreamAnimeModel>> fetchPopularAnime({int page = 1}) async {
     try {
       final response = await http.get(Uri.parse('$baseUrl/anime/popular?page=$page'));
@@ -27,7 +26,6 @@ class StreamAnimeRepo {
   }
 
 
-  // Fetch anime details, including episodes
   Future<StreamAnimeModel> fetchAnimeDetails(String id) async {
     try {
       final response = await http.get(Uri.parse('$baseUrl/anime/info/$id'));

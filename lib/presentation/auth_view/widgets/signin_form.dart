@@ -4,11 +4,10 @@ import 'package:otaku/logic/signin_cubit/signin_screen_cubit.dart';
 import '../../../logic/signin_cubit/signin_pass_cubit.dart';
 import '../../../utils/colors/color.dart';
 
-
 class SignInForm extends StatelessWidget {
   const SignInForm({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -116,8 +115,8 @@ class SignInForm extends StatelessWidget {
                     bool hasUpperCase = value.contains(RegExp(r'[A-Z]'));
                     bool hasLowerCase = value.contains(RegExp(r'[a-z]'));
                     bool hasDigits = value.contains(RegExp(r'\d'));
-                    bool hasSpecialCharacters = value.contains(RegExp(
-                        r'[!@#\$&*~%^()_+=|<>?{}\[\]\/\\.,-]'));
+                    bool hasSpecialCharacters = value.contains(
+                        RegExp(r'[!@#\$&*~%^()_+=|<>?{}\[\]\/\\.,-]'));
 
                     if (!hasUpperCase) {
                       return 'Password must include at least one uppercase letter';

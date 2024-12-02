@@ -25,14 +25,20 @@ class ProfileSetupView extends StatelessWidget {
       body: BlocBuilder<ProfileSetupCubit, ProfileSetupStates>(
         builder: (context, state) {
           if (state is ProfileSetupLoading) {
-            return const Center(child: CustomLoader(loaderColor: AppColors.accentPurple,));
+            return const Center(
+                child: CustomLoader(
+              loaderColor: AppColors.accentPurple,
+            ));
           } else if (state is ProfileSetupError) {
-            return const Center(child: Text("An error occurred. Please try again."));
+            return const Center(
+                child: Text("An error occurred. Please try again."));
           } else if (state is ProfileSetupLoaded) {
             return SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: screenHeight * 0.02, horizontal: screenWidth * 0.04),
+                  padding: EdgeInsets.symmetric(
+                      vertical: screenHeight * 0.02,
+                      horizontal: screenWidth * 0.04),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -41,10 +47,11 @@ class ProfileSetupView extends StatelessWidget {
                           onTap: () => profileSetupCubit.pickAvatar(),
                           child: CircleAvatar(
                             radius: 50,
-                            backgroundImage: profileSetupCubit.avatarBase64 != null
-                                ? MemoryImage(
-                                base64Decode(profileSetupCubit.avatarBase64!))
-                                : null,
+                            backgroundImage:
+                                profileSetupCubit.avatarBase64 != null
+                                    ? MemoryImage(base64Decode(
+                                        profileSetupCubit.avatarBase64!))
+                                    : null,
                             child: profileSetupCubit.avatarBase64 == null
                                 ? const Icon(Icons.camera_alt, size: 50)
                                 : null,
@@ -64,36 +71,41 @@ class ProfileSetupView extends StatelessWidget {
                         ),
                         maxLength: 200,
                         style: TextStyle(
-                          color: AppColors.textPrimary,
-                          fontSize: screenWidth * 0.04
-                        ),
+                            color: AppColors.textPrimary,
+                            fontSize: screenWidth * 0.04),
                       ),
                       SizedBox(height: screenHeight * 0.01),
                       // Genre Selection
-                      Text("Select Preferences:",
+                      Text(
+                        "Select Preferences:",
                         style: TextStyle(
                             color: AppColors.textPrimary,
-                            fontSize: screenWidth * 0.04
-                        ),
+                            fontSize: screenWidth * 0.04),
                       ),
                       SizedBox(height: screenHeight * 0.02),
                       Wrap(
                         spacing: 8.0,
                         runSpacing: 8.0,
-                        children: profileSetupCubit.predefinedGenres.map((genre) {
-                          final isSelected = profileSetupCubit.selectedGenres.contains(genre);
+                        children:
+                            profileSetupCubit.predefinedGenres.map((genre) {
+                          final isSelected =
+                              profileSetupCubit.selectedGenres.contains(genre);
                           return GestureDetector(
                             onTap: () => profileSetupCubit.toggleGenre(genre),
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 8),
                               decoration: BoxDecoration(
-                                color: isSelected ? Colors.deepPurple : Colors.grey[200],
+                                color: isSelected
+                                    ? Colors.deepPurple
+                                    : Colors.grey[200],
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: Text(
                                 genre,
                                 style: TextStyle(
-                                  color: isSelected ? Colors.white : Colors.black,
+                                  color:
+                                      isSelected ? Colors.white : Colors.black,
                                 ),
                               ),
                             ),
@@ -113,8 +125,7 @@ class ProfileSetupView extends StatelessWidget {
                         ),
                         style: TextStyle(
                             color: AppColors.textPrimary,
-                            fontSize: screenWidth * 0.04
-                        ),
+                            fontSize: screenWidth * 0.04),
                       ),
                       SizedBox(height: screenHeight * 0.02),
                       TextField(
@@ -128,8 +139,7 @@ class ProfileSetupView extends StatelessWidget {
                         ),
                         style: TextStyle(
                             color: AppColors.textPrimary,
-                            fontSize: screenWidth * 0.04
-                        ),
+                            fontSize: screenWidth * 0.04),
                       ),
                       SizedBox(height: screenHeight * 0.02),
                       TextField(
@@ -143,25 +153,24 @@ class ProfileSetupView extends StatelessWidget {
                         ),
                         style: TextStyle(
                             color: AppColors.textPrimary,
-                            fontSize: screenWidth * 0.04
-                        ),
+                            fontSize: screenWidth * 0.04),
                       ),
                       SizedBox(height: screenHeight * 0.02),
-              
-                      // Save Button
                       Center(
                         child: CustomFlatButton(
                           text: "Save Profile",
                           btnColor: Colors.deepPurple,
                           onTap: () async {
-                            final success = await profileSetupCubit.setupProfile();
+                            final success =
+                                await profileSetupCubit.setupProfile();
                             if (success) {
-                              if(context.mounted){
+                              if (context.mounted) {
                                 context.go(RouteNames.homeRoute);
                               }
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("Failed to update profile.")),
+                                const SnackBar(
+                                    content: Text("Failed to update profile.")),
                               );
                             }
                           },

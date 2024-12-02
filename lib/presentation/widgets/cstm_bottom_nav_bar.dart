@@ -3,8 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:otaku/logic/home_cubit/home_cubit.dart';
-import 'package:otaku/utils/routes/route_names.dart';
-import 'package:otaku/utils/storage/shared_prefs.dart';
 
 import '../../utils/colors/color.dart';
 

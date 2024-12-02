@@ -51,7 +51,7 @@ final router = GoRouter(
                 GoRoute(
                   path: RouteNames.forumRoute,
                   pageBuilder: (context, state) =>
-                  const MaterialPage(child: ForumView()),
+                  MaterialPage(child: ForumView()),
                 ),
               ]),
         ]),
